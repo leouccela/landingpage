@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julia Yumi Takeshita - Nutricionista</title>
+    <meta name="description" content="Nutricionista Julia Yumi Takeshita. Transforme sua saúde com planos alimentares personalizados e acompanhamento completo. Agende sua consulta!">
+    <meta name="keywords" content="nutricionista, Julia Yumi Takeshita, alimentação saudável, plano alimentar, consultoria online, acompanhamento nutricional, saúde, bem-estar, agendamento">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cor-serenidade: #E2E8EF;
+            --cor-verde-azulado: #03AB99;
+            --cor-salvia-verde: #7FA091;
+            --font-titulo: 'Merriweather', serif;
+            --font-texto: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-texto);
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--cor-serenidade);
+            overflow-x: hidden; /* Evita scroll horizontal em todo o body */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            font-family: var(--font-titulo);
+            font-style: italic;
+            color: var(--cor-verde-azulado);
+            margin-bottom: 20px;
+        }
+
+        /* Modificação: Diminui o H1 */
+        h1 {
+            font-size: 3rem; /* Diminuído de 3.5rem */
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--cor-verde-azulado);
+        }
+
+        /* Modificação: Aumenta o H2 */
+        h2 {
+            font-size: 2.2rem; /* Aumentado de 1.8rem para seções */
+            margin-bottom: 30px; /* Aumenta o espaçamento */
+            color: var(--cor-verde-azulado);
+        }
+
+
+        h3 {
+            font-family: var(--font-texto);
+            color: var(--cor-salvia-verde);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--cor-verde-azulado);
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex; /* Usa flexbox para centralizar conteúdo */
+            align-items: center; /* Centraliza verticalmente */
+            justify-content: center; /* Centraliza horizontalmente */
+            background-color: var(--cor-verde-azulado);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-family: var(--font-texto);
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center; /* Garante alinhamento de texto em caso de quebra de linha */
+        }
+
+        .btn:hover {
+            background-color: #028a78;
+        }
+
+        /* Seções */
+        section {
+            padding: 80px 0; /* Padding padrão para a maioria das seções */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilos para elementos com scroll-reveal que aparecem no carregamento */
+        .hero-animated-element {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .hero-animated-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Seção Hero */
+        #hero {
+            background-color: var(--cor-serenidade);
+            padding: 100px 0; /* Padding padrão para desktop */
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative; /* Necessário para posicionar o overlay */
+            overflow: hidden; /* Garante que a imagem de fundo não transborde */
+            background-image: url('imagens/topo.png'); /* Imagem de fundo padrão para desktop */
+            background-size: cover; /* Cobre toda a área */
+            background-position: center right; /* Posiciona a imagem à direita */
+            background-repeat: no-repeat; /* Evita repetição */
+            opacity: 0; /* Começa invisível para o fade-in */
+            transition: opacity 1.5s ease-out; /* Transição para o fade-in da imagem */
+        }
+
+        /* Classe para fazer o background da hero aparecer */
+        #hero.fade-in-bg {
+            opacity: 1;
+        }
+
+        /* Overlay para o lado esquerdo da imagem de fundo na seção Hero */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%; /* Ajuste a largura do gradiente conforme necessário */
+            height: 100%;
+            background: linear-gradient(to right, var(--cor-serenidade) 0%, rgba(226, 232, 239, 0.8) 50%, rgba(226, 232, 239, 0) 100%);
+            z-index: 1; /* Garante que o overlay fique atrás do conteúdo de texto */
+        }
+
+
+        #hero .container {
+            display: flex;
+            justify-content: space-between; /* Espaço entre texto e imagem */
+            align-items: center;
+            position: relative; /* Para que o conteúdo do container fique acima do overlay */
+            z-index: 2; /* Conteúdo principal acima do overlay */
+        }
+
+        #hero .hero-content {
+            text-align: left; /* Alinhado à esquerda */
+            max-width: 50%; /* Ocupa metade da largura */
+            z-index: 2;
+        }
+
+        #hero .hero-content h2:first-child {
+            font-size: 1.5rem;
+            color: var(--cor-salvia-verde);
+            margin-bottom: 10px;
+        }
+
+        /* Modificação: Diminui e muda a cor do segundo H2 na seção Hero */
+        #hero .hero-content h2:last-of-type {
+            font-size: 1.2rem; /* Diminuído de 1.5rem */
+            color: var(--cor-salvia-verde); /* Cor alterada */
+            margin-bottom: 30px;
+        }
+
+        /* Removido o placeholder da imagem, agora é background */
+        #hero .hero-image-placeholder {
+           display: none;
+        }
+
+        /* Media Query para MOBILE: Ajusta a imagem de fundo e o padding superior */
+        @media (max-width: 768px) {
+            #hero {
+                background-image: url('imagens/topo.mobile.png'); /* Imagem de fundo para mobile */
+                background-position: center center; /* Posiciona a imagem centralizada para mobile */
+                padding-top: 250px; /* Modificação: Aumenta o padding superior para abaixar o conteúdo */
+                padding-bottom: 50px; /* Ajusta o padding inferior, se necessário */
+                min-height: auto; /* Permite que a altura se ajuste ao conteúdo + padding */
+            }
+
+            #hero::before {
+                /* Modificação: Remove o gradiente para mobile */
+                background: none;
+            }
+
+            #hero .hero-content {
+                max-width: 100%; /* Permite que o conteúdo ocupe toda a largura em mobile */
+                text-align: center; /* Centraliza o texto em mobile */
+            }
+        }
+
+
+        /* Seção Conheça Meu Atendimento */
+        #atendimento {
+            background-color: #f8f8f8;
+            padding-top: 80px; /* Padding padrão para desktop */
+            padding-bottom: 80px; /* Padding padrão para desktop */
+        }
+
+        #atendimento .content-columns {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        #atendimento .image-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        /* Modificação: Diminui a imagem em 25% */
+        #atendimento img {
+            max-width: 75%; /* Reduz a largura máxima em 25% */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Modificação: Alinha o texto do content-columns para a esquerda */
+        #atendimento .text-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        /* Removidas as listas e ícones */
+        #atendimento ul {
+            display: none; /* Esconde a lista */
+        }
+
+        /* Media Query para MOBILE: Subindo o padding-top da seção "Conheça meu atendimento" e ajustando gap */
+        @media (max-width: 768px) {
+            #atendimento {
+                padding-top: 60px; /* Revertido para um valor mais próximo do original */
+                padding-bottom: 60px; /* Revertido para um valor mais próximo do original */
+            }
+
+            #atendimento .content-columns {
+                gap: 30px; /* Revertido para um valor mais próximo do original */
+            }
+        }
+
+
+        /* Seção Serviços */
+        #servicos {
+            background-color: var(--cor-serenidade);
+            padding-top: 80px; /* Padding padrão para desktop */
+            padding-bottom: 80px; /* Padding padrão para desktop */
+        }
+
+        #servicos .servicos-grid {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        #servicos .servicos-opcoes {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center; /* Centraliza os botões */
+            justify-content: center;
+        }
+
+        /* Modificação: Alinha o H2 "Nossos serviços" ao centro dos botões */
+        #servicos .servicos-opcoes h2 {
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+
+        #servicos .servico-button {
+            background-color: var(--cor-salvia-verde);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+            font-family: var(--font-texto);
+        }
+
+        #servicos .servico-button:hover {
+            background-color: #6a8c7a;
+            transform: translateY(-3px);
+        }
+
+        #servicos .servico-button.active {
+            background-color: var(--cor-verde-azulado);
+        }
+
+        #servicos .servico-button i {
+            font-size: 1.4rem;
+        }
+
+        #servicos .como-funciona {
+            flex: 2;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        #servicos .como-funciona h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--cor-verde-azulado);
+        }
+
+        /* Media Query para MOBILE: Ajusta a seção "Nossos serviços" e o h3 */
+        @media (max-width: 768px) {
+            #servicos {
+                padding-top: 60px; /* Revertido para um valor mais próximo do original */
+                padding-bottom: 60px; /* Revertido para um valor mais próximo do original */
+            }
+
+            #servicos .como-funciona h3 {
+                font-size: 1.5rem; /* Diminui o tamanho da fonte do h3 para mobile */
+                margin-bottom: 15px; /* Ajusta o espaçamento */
+            }
+        }
+
+        /* Seção Depoimentos - Carousel */
+        #depoimentos {
+            background-color: var(--cor-serenidade); /* Corrigido para a cor Serenidade */
+            padding-top: 40px; /* Modificação: Diminui o padding superior para aproximar da seção anterior */
+            padding-bottom: 80px; /* Mantém o padding inferior */
+            text-align: center; /* Centraliza H2 e parágrafo */
+        }
+        #depoimentos .carousel-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        #depoimentos .depoimentos-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 30px;
+            margin-top: 40px;
+            padding-bottom: 20px;
+            justify-content: flex-start;
+            /* REMOVENDO A BARRA DE ROLAGEM */
+            -webkit-overflow-scrolling: touch; /* Garante rolagem suave em iOS */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Esconde a barra de rolagem para navegadores Webkit (Chrome, Safari) */
+        #depoimentos .depoimentos-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        #depoimentos .depoimento-card {
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            max-width: 350px;
+            min-width: 300px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: grab;
+        }
+
+        #depoimentos .depoimento-card.active-drag {
+            cursor: grabbing;
+        }
+
+        #depoimentos .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(3, 171, 153, 0.7);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 10;
+        }
+
+        #depoimentos .carousel-arrow:hover {
+            background-color: var(--cor-verde-azulado);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        #depoimentos .carousel-arrow.prev-arrow {
+            left: 0;
+        }
+
+        #depoimentos .carousel-arrow.next-arrow {
+            right: 0;
+        }
+
+        @media (min-width: 993px) {
+            #depoimentos .depoimentos-grid {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* Seção Sobre Mim */
+        #sobre-mim {
+            background-color: var(--cor-serenidade); /* Corrigido para a cor Serenidade */
+            padding-top: 40px; /* Modificação: Diminui o padding superior para aproximar */
+            padding-bottom: 80px; /* Mantém o padding inferior */
+        }
+
+        #sobre-mim .content-columns {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        #sobre-mim .text-content {
+            flex: 1;
+        }
+
+        #sobre-mim .image-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        /* Modificação: Diminui a imagem em 25% para desktop e 15% para mobile */
+        #sobre-mim img {
+            max-width: 75%; /* Diminui para desktop (75% do container) */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Media Query para mobile */
+        @media (max-width: 768px) {
+            #sobre-mim img {
+                max-width: 85%; /* Diminui menos para mobile (85% do container) */
+            }
+        }
+
+        /* Modificação: Alinha H2 "Julia Yumi Takeshita" à esquerda */
+        #sobre-mim h2 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        /* Seção Localização e Contato */
+        #contato {
+            background-color: #f8f8f8;
+        }
+
+        #contato .contact-grid {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        #contato .location-info,
+        #contato .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        #contato .location-info p,
+        #contato .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        #contato .location-info a {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--cor-verde-azulado);
+            font-weight: 600;
+        }
+
+        /* Modificação: Ajusta o botão de contato para alinhar à esquerda */
+        #contato .contact-info .btn {
+            width: 250px;
+            margin: 20px 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            white-space: nowrap;
+        }
+
+        /* Modificação: Alinha H2 "Onde estou localizada" um pouco mais para a direita */
+        #contato h2 {
+            text-align: left;
+            padding-left: 30px;
+            box-sizing: border-box;
+        }
+
+        /* Seção FAQ */
+        #faq {
+            background-color: var(--cor-serenidade);
+            text-align: center;
+        }
+
+        #faq .faq-items {
+            margin-top: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        #faq .faq-item {
+            background-color: #fff;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        #faq .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--cor-verde-azulado);
+            font-size: 1.1rem;
+        }
+
+        #faq .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        #faq .faq-question.active::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        #faq .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            color: #555;
+        }
+
+        #faq .faq-answer.open {
+            max-height: 200px;
+            padding: 10px 20px 20px 20px;
+        }
+
+        /* Media Query para MOBILE: Diminui a fonte das perguntas do FAQ */
+        @media (max-width: 768px) {
+            #faq .faq-question {
+                font-size: 1rem;
+            }
+        }
+
+
+        /* Rodapé */
+        footer {
+            background-color: var(--cor-salvia-verde);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--cor-verde-azulado);
+        }
+
+        footer .social-icons a {
+            margin: 0 8px;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 992px) {
+            #hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            #hero .hero-content {
+                text-align: center;
+                max-width: 100%;
+                margin-top: 40px;
+            }
+
+            #atendimento .content-columns,
+            #sobre-mim .content-columns {
+                flex-direction: column;
+            }
+
+            #atendimento .image-content,
+            #sobre-mim .image-content {
+                order: -1;
+                margin-bottom: 30px;
+            }
+
+            #servicos .servicos-grid {
+                flex-direction: column;
+            }
+
+            #servicos .servicos-opcoes {
+                align-items: center;
+            }
+
+            #servicos .servico-button {
+                max-width: 100%;
+            }
+
+            #contato .contact-grid {
+                flex-direction: column;
+            }
+
+            #depoimentos .carousel-container {
+                padding: 0 20px;
+            }
+            #depoimentos .carousel-arrow {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2rem; /* Aumentado para mobile */
+            }
+            section {
+                padding: 60px 0;
+            }
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem; /* Ajustado para mobile menor */
+            }
+            .container {
+                padding: 15px;
+            }
+            #depoimentos .depoimento-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-animated-element">Julia Yumi Takeshita</h2>
+                <h1 class="hero-animated-element">Nutrição que transforma sua vida e te faz florescer</h1>
+                <h2 class="hero-animated-element">Desperte seu potencial máximo através de uma alimentação consciente e personalizada.</h2>
+                <a href="#contato" class="btn hero-animated-element" id="hero-cta-button">AGENDAR MINHA CONSULTA</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="atendimento" class="scroll-reveal">
+            <div class="container">
+                <div class="content-columns">
+                    <div class="image-content">
+                        <img src="imagens/atendimento.png" alt="Julia Yumi Takeshita atendendo">
+                    </div>
+                    <div class="text-content">
+                        <h2>Conheça meu atendimento</h2>
+                        <p>
+                            Muitas pessoas buscam uma vida mais saudável, mas se perdem em meio a informações conflitantes e dietas restritivas. Meu atendimento é baseado na individualidade, entendendo suas necessidades, rotina e objetivos para construir um caminho nutricional que seja sustentável e prazeroso.
+                        </p>
+                        <p>
+                            Acredito que a alimentação consciente é a chave para uma vida plena, sem culpas ou proibições desnecessárias. Juntos, vamos desmistificar o universo da nutrição e encontrar o equilíbrio que seu corpo merece.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicos" class="scroll-reveal">
+            <div class="container">
+                <div class="servicos-grid">
+                    <div class="servicos-opcoes">
+                        <h2>Nossos serviços</h2>
+                        <button class="servico-button active" data-service="online">
+                            <i class="fas fa-laptop-medical"></i> Consultoria online
+                        </button>
+                        <button class="servico-button" data-service="plano">
+                            <i class="fas fa-utensils"></i> Plano alimentar
+                        </button>
+                        <button class="servico-button" data-service="acompanhamento">
+                            <i class="fas fa-users"></i> Acompanhamento
+                        </button>
+                    </div>
+                    <div class="como-funciona">
+                        <h3>Como funciona:</h3>
+                        <div id="service-description-online">
+                            <p>
+                                Nossas consultorias online oferecem a flexibilidade que você precisa para cuidar da sua saúde de qualquer lugar. Através de videochamadas, vamos conversar sobre seus hábitos, metas e desafios. Você terá acesso a um plano personalizado, materiais educativos e todo o suporte necessário para iniciar sua jornada de transformação. É a comodidade de ter uma nutricionista ao seu lado, onde quer que você esteja.
+                            </p>
+                            <p>
+                                Ideal para quem busca otimizar o tempo e ter um acompanhamento de qualidade sem sair de casa.
+                            </p>
+                        </div>
+                        <div id="service-description-plano" style="display: none;">
+                            <p>
+                                O plano alimentar é cuidadosamente elaborado após uma avaliação detalhada das suas necessidades nutricionais, preferências alimentares e rotina diária. Ele não é apenas uma lista de alimentos, mas sim um guia prático e delicioso para te ajudar a alcançar seus objetivos, seja emagrecimento, ganho de massa, melhora de alguma condição de saúde ou simplesmente a busca por uma alimentação mais equilibrada.
+                            </p>
+                            <p>
+                                Receba receitas, sugestões de preparo e um cronograma alimentar fácil de seguir.
+                            </p>
+                        </div>
+                        <div id="service-description-acompanhamento" style="display: none;">
+                            <p>
+                                O acompanhamento contínuo é fundamental para garantir resultados duradouros. Com encontros periódicos, vamos monitorar seu progresso, ajustar o plano alimentar conforme sua evolução e superar os desafios que surgirem. Meu papel é te motivar, oferecer novas estratégias e garantir que você se sinta seguro(a) e confiante em sua jornada de bem-estar.
+                            </p>
+                            <p>
+                                Através de um suporte constante, você terá a certeza de que está no caminho certo para uma vida mais saudável e feliz.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="depoimentos" class="scroll-reveal">
+            <div class="container">
+                <h2>Meus pacientes</h2>
+                <p>
+                    Acredito que o reconhecimento do meu trabalho está na transformação da vida dos meus pacientes.
+                </p>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev-arrow" aria-label="Depoimento anterior"><i class="fas fa-chevron-left"></i></button>
+                    <div class="depoimentos-grid">
+                        <div class="depoimento-card">
+                            <img src="https://via.placeholder.com/80x80?text=CLIENTE1" alt="Foto do Cliente">
+                            <p>"Finalmente encontrei uma abordagem que funciona! A Julia me ensinou a comer de forma consciente, sem restrições loucas. Me sinto muito mais disposta e feliz!"</p>
+                            <span>Ana Carolina M.</span>
+                        </div>
+                        <div class="depoimento-card">
+                            <img src="https://via.placeholder.com/80x80?text=CLIENTE2" alt="Foto do Cliente">
+                            <p>"O acompanhamento da Julia foi essencial para minha mudança de hábitos. Ela sempre foi muito atenciosa e me deu as ferramentas para alcançar meus objetivos."</p>
+                            <span>Marcos D.</span>
+                        </div>
+                        <div class="depoimento-card">
+                            <img src="https://via.placeholder.com/80x80?text=CLIENTE3" alt="Foto do Cliente">
+                            <p>"Saí de dietas extremas para uma alimentação prazerosa e sustentável. A Julia mudou minha relação com a comida. Recomendo muito!"</p>
+                            <span>Fernanda L.</span>
+                        </div>
+                        <div class="depoimento-card">
+                            <img src="https://via.placeholder.com/80x80?text=CLIENTE4" alt="Foto do Cliente">
+                            <p>"Sua consultoria online foi perfeita para minha rotina agitada. Consegui seguir o plano e já vejo resultados incríveis na minha energia e saúde."</p>
+                            <span>Pedro R.</span>
+                        </div>
+                        <div class="depoimento-card">
+                            <img src="https://via.placeholder.com/80x80?text=CLIENTE5" alt="Foto do Cliente">
+                            <p>"O plano alimentar é delicioso e fácil de adaptar. Me sinto nutrida e não passo fome. A Julia é uma excelente profissional!"</p>
+                            <span>Beatriz S.</span>
+                        </div>
+                    </div>
+                    <button class="carousel-arrow next-arrow" aria-label="Próximo depoimento"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre-mim" class="scroll-reveal">
+            <div class="container">
+                <div class="content-columns">
+                    <div class="image-content">
+                        <img src="imagens/sobre.png" alt="Foto da Julia Yumi Takeshita">
+                    </div>
+                    <div class="text-content">
+                        <h2>Julia Yumi Takeshita</h2>
+                        <p>
+                            Minha jornada na nutrição começou com a paixão por ajudar as pessoas a descobrirem o poder dos alimentos. Sou formada em nutrição pela Universidade de São Paulo (USP) e pós-graduada em nutrição clínica e funcional. Acredito que a alimentação vai muito além da contagem de calorias; ela é sobre autocuidado, equilíbrio e conexão com o corpo.
+                        </p>
+                        <p>
+                            Ao longo da minha carreira, percebi que a chave para uma vida saudável é a personalização. Cada indivíduo é único, e é por isso que meus planos são desenhados sob medida para suas necessidades e objetivos. Meu propósito é te guiar nessa transformação, oferecendo conhecimento, suporte e motivação para que você alcance seus melhores resultados e viva uma vida mais feliz e plena.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="scroll-reveal">
+            <div class="container">
+                <h2>Onde estou localizada</h2>
+                <div class="contact-grid">
+                    <div class="location-info">
+                        <h3>Consultório</h3>
+                        <p>Rua Bela Cintra, 1000 - Conjunto 123</p>
+                        <p>Consolação, São Paulo - SP</p>
+                        <p>CEP: 01415-001</p>
+                        <a href="https://www.google.com/maps/search/Rua+Bela+Cintra,+1000+Consolação,+São+Paulo+-+SP" target="_blank">Ver no Mapa</a>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Entre em contato</h3>
+                        <p><strong>Telefone:</strong> (11) 999999999</p>
+                        <p><strong>Horário de Atendimento:</strong></p>
+                        <p>Segunda a Sexta: 09h às 18h</p>
+                        <p>Sábado: 09h às 13h (com agendamento)</p>
+                        <a href="#" class="btn">AGENDAR MINHA CONSULTA</a> <!-- Link do WhatsApp removido -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="scroll-reveal">
+            <div class="container">
+                <h2>Dúvidas frequentes</h2>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Qual a diferença entre um nutricionista e um nutrólogo?
+                        </div>
+                        <div class="faq-answer">
+                            <p>Um nutricionista é um profissional com formação em nutrição que atua na promoção, prevenção e tratamento de doenças através da alimentação, elaborando planos alimentares. Já um nutrólogo é um médico que se especializou em nutrologia, podendo diagnosticar e tratar doenças relacionadas à nutrição, inclusive prescrever medicamentos.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Preciso seguir uma dieta restritiva para ter resultados?
+                        </div>
+                        <div class="faq-answer">
+                            <p>Minha abordagem foca na reeducação alimentar e na construção de hábitos saudáveis duradouros. Não trabalho com dietas extremamente restritivas, mas sim com um plano alimentar equilibrado e personalizado que te permita comer com prazer e sem culpa, alcançando seus objetivos de forma sustentável.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Como funcionam as consultas online?
+                        </div>
+                        <div class="faq-answer">
+                            <p>As consultas online são realizadas por videochamada em uma plataforma segura. Durante a consulta, faremos uma anamnese detalhada, conversaremos sobre seus objetivos e rotina, e juntos construiremos um plano alimentar personalizado. Você receberá o plano por e-mail e teremos acompanhamento para garantir seu progresso.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Quanto tempo dura o tratamento nutricional?
+                        </div>
+                        <div class="faq-answer">
+                            <p>A duração do tratamento nutricional varia de pessoa para pessoa, dependendo dos objetivos, da adesão ao plano e do ritmo individual de cada um. O importante é que a mudança de hábitos seja contínua e prazerosa, buscando sempre o seu bem-estar e a sustentabilidade dos resultados a longo prazo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 <a href="https://www.skylead.com.br" target="_blank">SkyLead</a> Todos os direitos reservados.</p>
+            <p>
+                <!-- Removido: Política de Privacidade e Termos de Uso -->
+            </p>
+            <div class="social-icons">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Efeito Scroll-Reveal
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section:not(#hero)'); // Seleciona todas as seções exceto a hero
+            const heroAnimatedElements = document.querySelectorAll('.hero-animated-element'); // Elementos específicos da hero
+            const heroSection = document.getElementById('hero'); // A seção hero
+
+            // Função para aplicar a animação de "aparecer de baixo para cima"
+            const applySlideUpAnimation = (elements) => {
+                elements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('is-visible');
+                    }, 100 * index);
+                });
+            };
+
+            // Aplica a animação aos elementos da seção hero imediatamente no carregamento
+            applySlideUpAnimation(heroAnimatedElements);
+
+
+            // Observador para as outras seções (scroll-reveal)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // A seção será visível quando 20% dela estiver na viewport
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Para que a animação ocorra apenas uma vez
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Funcionalidade da Seção de Serviços
+            const serviceButtons = document.querySelectorAll('.servico-button');
+            const serviceDescriptions = {
+                online: document.getElementById('service-description-online'),
+                plano: document.getElementById('service-description-plano'),
+                acompanhamento: document.getElementById('service-description-acompanhamento')
+            };
+
+            serviceButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove a classe 'active' de todos os botões
+                    serviceButtons.forEach(btn => btn.classList.remove('active'));
+                    // Adiciona a classe 'active' ao botão clicado
+                    button.classList.add('active');
+
+                    // Esconde todas as descrições
+                    for (const key in serviceDescriptions) {
+                        serviceDescriptions[key].style.display = 'none';
+                    }
+
+                    // Mostra a descrição relevante
+                    const serviceType = button.dataset.service;
+                    if (serviceDescriptions[serviceType]) {
+                        serviceDescriptions[serviceType].style.display = 'block';
+                    }
+                });
+            });
+
+            // Funcionalidade FAQ (Accordion)
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = question.classList.contains('active');
+
+                    // Fecha todas as outras respostas abertas
+                    faqQuestions.forEach(q => {
+                        if (q !== question && q.classList.contains('active')) {
+                            q.classList.remove('active');
+                            q.nextElementSibling.classList.remove('open');
+                            q.nextElementSibling.style.maxHeight = '0';
+                            q.nextElementSibling.style.padding = '0 20px'; // Reseta o padding
+                        }
+                    });
+
+                    // Alterna a resposta clicada
+                    if (isActive) {
+                        question.classList.remove('active');
+                        answer.classList.remove('open');
+                        answer.style.maxHeight = '0';
+                        answer.style.padding = '0 20px'; // Reseta o padding
+                    } else {
+                        question.classList.add('active');
+                        answer.classList.add('open');
+                        answer.style.maxHeight = answer.scrollHeight + 'px'; // Define max-height dinamicamente
+                        answer.style.padding = '10px 20px 20px 20px'; // Define padding quando aberto
+                    }
+                });
+            });
+
+            // Funcionalidade do Carrossel de Depoimentos
+            const depoimentosGrid = document.querySelector('#depoimentos .depoimentos-grid');
+            const prevArrow = document.querySelector('#depoimentos .prev-arrow');
+            const nextArrow = document.querySelector('#depoimentos .next-arrow');
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            // Eventos para arrastar com o mouse
+            depoimentosGrid.addEventListener('mousedown', (e) => {
+                isDown = true;
+                depoimentosGrid.classList.add('active-drag'); // Adiciona classe para mudar o cursor
+                startX = e.pageX - depoimentosGrid.offsetLeft;
+                scrollLeft = depoimentosGrid.scrollLeft;
+            });
+
+            depoimentosGrid.addEventListener('mouseleave', () => {
+                isDown = false;
+                depoimentosGrid.classList.remove('active-drag');
+            });
+
+            depoimentosGrid.addEventListener('mouseup', () => {
+                isDown = false;
+                depoimentosGrid.classList.remove('active-drag');
+            });
+
+            depoimentosGrid.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault(); // Impede a seleção de texto
+                const x = e.pageX - depoimentosGrid.offsetLeft;
+                const walk = (x - startX) * 2; // Multiplicador para rolagem mais rápida
+                depoimentosGrid.scrollLeft = scrollLeft - walk;
+            });
+
+            // Navegação com as setas
+            prevArrow.addEventListener('click', () => {
+                depoimentosGrid.scrollBy({
+                    left: -depoimentosGrid.offsetWidth / 2, // Rola pela metade da largura da grade
+                    behavior: 'smooth'
+                });
+            });
+
+            nextArrow.addEventListener('click', () => {
+                depoimentosGrid.scrollBy({
+                    left: depoimentosGrid.offsetWidth / 2, // Rola pela metade da largura da grade
+                    behavior: 'smooth'
+                });
+            });
+
+            // Funcionalidade de rolagem suave para o botão da seção Hero
+            const heroCtaButton = document.getElementById('hero-cta-button');
+            if (heroCtaButton) {
+                heroCtaButton.addEventListener('click', function(event) {
+                    event.preventDefault(); // Previne o comportamento padrão do link
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+
+        // Este script é executado quando TODOS os recursos (incluindo imagens) são carregados
+        window.onload = function() {
+            const heroSection = document.getElementById('hero');
+            if (heroSection) {
+                heroSection.classList.add('fade-in-bg');
+            }
+        };
+    </script>
+</body>
+</html>
